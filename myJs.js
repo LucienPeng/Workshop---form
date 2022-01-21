@@ -80,14 +80,14 @@ submitBtn.addEventListener("click", (e) => {
 });
 
 //計算最高分
-let theHighestScore = 0;
 let theHighestID = 0;
 
 function findTheHighest(scores, IDs) {
+  let theHighestScore = scores[0];
   for (let i = 0; i <= scores.length; i++) {
-    if (scores[i] >= scores[i + 1]) {
-      theHighestScore = scores[i + 1];
-      theHighestID = IDs[i + 1];
+    if (scores[i] > theHighestScore) {
+      theHighestScore = scores[i];
+      theHighestID = IDs[i];
       console.log(theHighestScore);
     }
   }
