@@ -129,43 +129,48 @@ table {
 }
 
 body {
-  height: 100vh;
-  width: 100vw;
-  background-image: url("https://images.pexels.com/photos/1181271/pexels-photo-1181271.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260");
+  background-image: url("https://images.pexels.com/photos/917494/pexels-photo-917494.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260");
   background-repeat: no-repeat;
   background-size: cover;
+  background-attachment: fixed;
+}
+
+.container-fluid {
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-direction: column;
+  height: 100vh;
 }
 
 .row.form {
+  height: 100vh;
   display: flex;
-  flex-direction: column;
   justify-content: center;
   align-items: center;
-  background-color: #ffffffa1;
-  border-radius: 10px;
-  padding: 20px;
 }
 
 .col.form {
+  width: inherit;
+  background-color: #ffffffa1;
+  border-radius: 10px;
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  padding-top: 20px;
+  padding-bottom: 20px;
 }
 
 .students-form {
   display: flex;
-  justify-content: center;
+  justify-content: space-evenly;
   align-items: center;
   flex-wrap: wrap;
-  margin-bottom: 10px;
 }
 
 .students-info-form {
-  padding: 15px;
+  padding: 10px;
   margin: 10px;
   border-radius: 10px;
   background-color: #b1c6d471;
@@ -186,14 +191,43 @@ body {
   background-color: #fff;
 }
 
-.row.paragraph {
-  margin-top: 3em;
-  background-color: #ffffffa1;
-  border-radius: 10px;
+.row.result {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  width: inherit;
 }
 
-.col.paragraph {
+.col.result1 {
   display: none;
-  background-color: #c5c1c171;
-  padding: 10px;
+  padding: 20px;
+  background-color: #ffffffa1;
+  border-radius: 10px;
+  margin: 5px;
+  line-height: 1.5em;
+  height: 100%;
+}
+
+.col.result2 {
+  display: none;
+  padding: 20px;
+  margin-top: 10px;
+  background-color: #ffffffa1;
+  border-radius: 10px;
+  margin: 5px;
+  list-style-type: none;
+  line-height: 3em;
+  height: 100%;
+}
+
+.col.result3 {
+  display: none;
+  padding: 20px;
+  margin-top: 10px;
+  background-color: #ffffffa1;
+  border-radius: 10px;
+  margin: 5px;
+  line-height: 1.5em;
+  height: 100%;
 }
