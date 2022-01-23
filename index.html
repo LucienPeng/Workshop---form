@@ -12,13 +12,13 @@
 </head>
 <body>
     <div class="container-fluid">
-        <div class="row form">
-            <div class="col col-md-12 form" >
+        <div class="row row-col-sm-1 form">
+            <div class="col form" >
                 <form action=""class="students-form" >
                     <div class="students-info-form">
                         <h5>學號：</h5>
                         <input type="text" placeholder="請輸入學號">
-                        <h5>分數：</h5>
+                        <h5>分數：</h5 required>
                         <input type="text" placeholder="請輸入分數">
                     </div>
                     <div class="students-info-form">
@@ -49,13 +49,48 @@
                 <button class="submit-btn-form">提交</button>
             </div>
         </div>
-        <div class="row row-col-sm-1 row-col-md-3 result">
-            <div class="col col-12 col-md-4 result1">
-                
+        <div class="row row-col-sm-1 result">
+            <div class="col col-md-4 result">
+                <ul class="result-section1">
+                    <li id="title"><strong>原始分數</strong></li>
+
+                    <li class="student" ></li>
+                    <li class="score" ></li>
+                    <li class="student" ></li>
+                    <li class="score" ></li> 
+                    <li class="student" ></li>
+                    <li class="score" ></li> 
+                    <li class="student" ></li>
+                    <li class="score" ></li> 
+                    <li class="student" ></li>
+                    <li class="score" ></li>
+                </ul>
+
             </div>
-            <div class="col c0l-12 col-md-4 result2">
+            
+            <div class="col col-md-4 result3">
+                <ul class="result-section2">
+                    <li id="title"><strong>修正後分數</strong></li>
+                    <li class="newStudentID"></li>
+                    <li class="newScore"></li>
+                    <li class="newStudentID"></li>
+                    <li class="newScore"></li>
+                    <li class="newStudentID"></li>
+                    <li class="newScore"></li>
+                    <li class="newStudentID"></li>
+                    <li class="newScore"></li>
+                    <li class="newStudentID"></li>
+                    <li class="newScore"></li>
+                </ul>
             </div>
-            <div class="col col-12 col-md-4 result3">
+            <div class="col col-md-4 result2">
+                <ul class="result-section3">
+                    <li id="title"><strong>修正後分數</strong></li>
+                    <li id="Average-Result"></li>
+                    <li id="Highest-Result"></li>
+                    <li id="Lowest-Result"></li>
+                    <li id="unpass-Result"></li>
+                </ul>
             </div>
         </div>
     </div>    
