@@ -1,5 +1,7 @@
 /*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*/
 
+let warning = document.querySelector("#warning");
+
 const submitBtn = document.querySelector(".submit-btn-form");
 const studentsInfo = document.querySelectorAll(".students-info-form");
 const resultSection1 = document.querySelector(".result-section1");
@@ -19,92 +21,81 @@ const studentsScoreArray = [];
 submitBtn.addEventListener("click", (e) => {
   e.preventDefault;
 
-  // 取得輸入值並放入陣列之中
+  //防止輸入空值
   studentsInfo.forEach((item) => {
     let studentsID = item.children[1].value;
     let studentsScore = item.children[3].value;
-    studentsIDArray.push(studentsID);
-    studentsScoreArray.push(studentsScore);
+
+    if (studentsID == "" && studentsScore == "") {
+      return;
+    } else if (studentsID == "") {
+      warning.innerText = "請先完整輸入所有人的學號！";
+      return;
+    } else if (studentsScore == "") {
+      warning.innerText = "請先完整輸入所有人的分數！";
+      return;
+    } else {
+      warning.innerText = "";
+      studentsIDArray.push(studentsID);
+      studentsScoreArray.push(studentsScore);
+    }
+    // 將學生資料放入物件之中
+    check(studentsIDArray, studentsScoreArray);
+    function check(arr1, arr2) {
+      let studentsList = [];
+
+      for (let i = 0; i < arr1.length; i++) {
+        let obj = {};
+        obj.IdNos = arr1[i];
+        obj.scores = arr2[i];
+        studentsList.push(obj);
+      }
+
+      //將學生清單（物件）寫於 HTML 段落中
+      let student = document.querySelectorAll(".student");
+      let score = document.querySelectorAll(".score");
+
+      studentsList.forEach((item, index) => {
+        student[index].innerText = `學號 : ${studentsList[index].IdNos}`;
+        score[index].innerText = `分數 : ${studentsList[index].scores}`;
+      });
+
+      //計算平均分數 //將平均值的結果，寫於 HTML 段落中
+      let average = 0;
+      studentsScoreArray.forEach((item, index) => {
+        average += Math.round(Number(item));
+      });
+
+      let result = document.createElement("li");
+      average = average / studentsScoreArray.length;
+      theAverageResult.innerHTML = `總平均分數為： ${average} 分。`;
+
+      //計算最高分並寫於 HTML 段落中
+      let theHighest = findTheHighest(studentsScoreArray, studentsIDArray);
+      theHighestResult.innerHTML = theHighest;
+
+      //計算最低分並寫於 HTML 段落中
+      let theLowest = findTheLowest(studentsScoreArray, studentsIDArray);
+      theLowestResult.innerHTML = theLowest;
+
+      //計算不及格百分比並寫於 HTML 段落中
+      let unpass = findPercentage(studentsScoreArray, studentsList);
+      unpassResult.innerHTML = unpass;
+
+      //顯現結果段落
+      resultSection1.style.display = "block";
+      resultSection2.style.display = "block";
+      resultSection3.style.display = "block";
+    }
   });
 
-  check(studentsIDArray, studentsScoreArray);
-  function check(arr1, arr2) {
-    for (let i = 0; i < arr1.length; i++) {
-      // 防止輸入空值
-      if (arr1[i] == "" && arr2[i] == "") {
-        continue;
-      } else {
-        // 將學生資料放入物件之中
-        let studentsList = [
-          (student1 = {
-            IdNo: studentsIDArray[0],
-            score: studentsScoreArray[0],
-          }),
-          (student2 = {
-            IdNo: studentsIDArray[1],
-            score: studentsScoreArray[1],
-          }),
-          (student3 = {
-            IdNo: studentsIDArray[2],
-            score: studentsScoreArray[2],
-          }),
-          (student4 = {
-            IdNo: studentsIDArray[3],
-            score: studentsScoreArray[3],
-          }),
-          (student5 = {
-            IdNo: studentsIDArray[4],
-            score: studentsScoreArray[4],
-          }),
-        ];
-
-        let student = document.querySelectorAll(".student");
-        let score = document.querySelectorAll(".score");
-
-        for (let i = 0; i < 5; i++) {
-          student[i].innerText = `學號 : ${studentsList[i].IdNo}`;
-          score[i].innerText = `分數 : ${studentsList[i].score}`;
-        }
-
-        //計算平均分數 //將平均值的結果，寫於 HTML 段落中
-        let average = 0;
-        studentsScoreArray.forEach((item, index) => {
-          average += Number(item);
-        });
-
-        let result = document.createElement("li");
-        average = average / studentsScoreArray.length;
-        theAverageResult.innerHTML = `總平均分數為： ${average} 分。`;
-
-        //計算最高分並寫於 HTML 段落中
-        let theHighest = findTheHighest(studentsScoreArray, studentsIDArray);
-        theHighestResult.innerHTML = theHighest;
-
-        //計算最低分並寫於 HTML 段落中
-        let theLowest = findTheLowest(studentsScoreArray, studentsIDArray);
-        theLowestResult.innerHTML = theLowest;
-
-        //計算不及格百分比並寫於 HTML 段落中
-        let unpass = findPercentage(studentsScoreArray, studentsList);
-        unpassResult.innerHTML = unpass;
-
-        //顯現結果段落
-        resultSection1.style.display = "block";
-        resultSection2.style.display = "block";
-        resultSection3.style.display = "block";
-
-        //清除已輸入資料
-        studentsInfo.forEach((item) => {
-          item.children[1].value = "";
-          item.children[3].value = "";
-          studentsIDArray.pop(item.children[1].value);
-          studentsScoreArray.pop(item.children[1].value);
-        });
-
-        break;
-      }
-    }
-  }
+  //清除已輸入資料
+  studentsInfo.forEach((item) => {
+    item.children[1].value = "";
+    item.children[3].value = "";
+    studentsIDArray.splice(0, studentsIDArray.length);
+    studentsScoreArray.splice(0, studentsScoreArray.length);
+  });
 });
 
 //計算最高分
@@ -146,24 +137,28 @@ function findPercentage(scores, newScoresList) {
     }
   }
 
-  counter = ((counter / total) * 10000) / 100;
+  counter = Math.round(((counter / total) * 10000) / 100);
+
+  //及格率低於50%，將補正後的分數寫於 HTML 段落中。
 
   if (counter < 50) {
     for (let i = 0; i < newScoresList.length; i++) {
-      if (newScoresList[i].score < 60) {
-        let newScores = Number(newScoresList[i].score);
+      if (newScoresList[i].scores < 60) {
+        let newScores = Number(newScoresList[i].scores);
         for (let j = 1; j + newScores <= 60; j = 1) {
           newScores += j;
         }
-        newScoresList[i].score = newScores;
+        newScoresList[i].scores = newScores;
       }
     }
+
+    //將補正後的分數寫於 HTML 段落中
+
     let newStudentID = document.querySelectorAll(".newStudentID");
     let newScore = document.querySelectorAll(".newScore");
-    for (let i = 0; i < 5; i++) {
-      console.log(newScoresList);
-      newStudentID[i].innerHTML = `學號 : ${newScoresList[i].IdNo}`;
-      newScore[i].innerHTML = `分數 : ${newScoresList[i].score}`;
+    for (let i = 0; i < newScoresList.length; i++) {
+      newStudentID[i].innerHTML = `學號 : ${newScoresList[i].IdNos}`;
+      newScore[i].innerHTML = `分數 : ${newScoresList[i].scores}`;
     }
   }
 
