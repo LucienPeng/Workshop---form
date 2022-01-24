@@ -29,10 +29,10 @@ submitBtn.addEventListener("click", (e) => {
     if (studentsID == "" && studentsScore == "") {
       return;
     } else if (studentsID == "") {
-      warning.innerText = "請先完整輸入所有人的學號！";
+      warning.innerText = "請先至少完整輸入一個人的學號及分數！";
       return;
     } else if (studentsScore == "") {
-      warning.innerText = "請先完整輸入所有人的分數！";
+      warning.innerText = "請先至少完整輸入一個人的學號及分數！";
       return;
     } else {
       warning.innerText = "";
@@ -79,7 +79,8 @@ submitBtn.addEventListener("click", (e) => {
       theLowestResult.innerHTML = theLowest;
 
       //計算不及格百分比並寫於 HTML 段落中
-      let unpass = findPercentage(studentsScoreArray, studentsList);
+      let unpass = findPercentage(studentsScoreArray);
+      let correctionScores = correction(studentsList);
       unpassResult.innerHTML = unpass;
 
       //顯現結果段落
@@ -128,39 +129,36 @@ function findTheLowest(scores, IDs) {
 
 //計算不及格百分比;
 
-function findPercentage(scores, newScoresList) {
+function findPercentage(scores) {
   let counter = 0;
-  let total = scores.length;
   for (let i = 0; i <= scores.length; i++) {
     if (scores[i] > 60) {
       counter += 1;
     }
   }
 
-  counter = Math.round(((counter / total) * 10000) / 100);
+  counter = Math.round(((counter / scores.length) * 10000) / 100);
+  return `及格率為${counter}%`;
+}
 
-  //及格率低於50%，將補正後的分數寫於 HTML 段落中。
+//及格率低於50%，將補正後的分數寫於 HTML 段落中。
 
-  if (counter < 50) {
-    for (let i = 0; i < newScoresList.length; i++) {
-      if (newScoresList[i].scores < 60) {
-        let newScores = Number(newScoresList[i].scores);
-        for (let j = 1; j + newScores <= 60; j = 1) {
-          newScores += j;
-        }
-        newScoresList[i].scores = newScores;
+function correction(list) {
+  for (let i = 0; i < list.length; i++) {
+    if (list[i].scores < 60) {
+      let newScores = Number(list[i].scores);
+      for (let j = 1; j + newScores <= 60; j = 1) {
+        newScores += j;
       }
-    }
-
-    //將補正後的分數寫於 HTML 段落中
-
-    let newStudentID = document.querySelectorAll(".newStudentID");
-    let newScore = document.querySelectorAll(".newScore");
-    for (let i = 0; i < newScoresList.length; i++) {
-      newStudentID[i].innerHTML = `學號 : ${newScoresList[i].IdNos}`;
-      newScore[i].innerHTML = `分數 : ${newScoresList[i].scores}`;
+      list[i].scores = newScores;
     }
   }
+  //   將補正後的分數寫於 HTML 段落中
 
-  return `及格率為${counter}%`;
+  let newStudentID = document.querySelectorAll(".newStudentID");
+  let newScore = document.querySelectorAll(".newScore");
+  for (let i = 0; i < list.length; i++) {
+    newStudentID[i].innerHTML = `學號 : ${list[i].IdNos}`;
+    newScore[i].innerHTML = `分數 : ${list[i].scores}`;
+  }
 }
