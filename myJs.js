@@ -37,7 +37,7 @@ submitBtn.addEventListener("click", (e) => {
     } else {
       warning.innerText = "";
       studentsIDArray.push(studentsID);
-      studentsScoreArray.push(studentsScore);
+      studentsScoreArray.push(Number(studentsScore));
     }
     // 將學生資料放入物件之中
     check(studentsIDArray, studentsScoreArray);
@@ -79,8 +79,7 @@ submitBtn.addEventListener("click", (e) => {
       theLowestResult.innerHTML = theLowest;
 
       //計算不及格百分比並寫於 HTML 段落中
-      let unpass = findPercentage(studentsScoreArray);
-      let correctionScores = correction(studentsList);
+      let unpass = findPercentage(studentsList);
       unpassResult.innerHTML = unpass;
 
       //顯現結果段落
@@ -129,36 +128,40 @@ function findTheLowest(scores, IDs) {
 
 //計算不及格百分比;
 
-function findPercentage(scores) {
+function findPercentage(list) {
+  let passed = 0;
+  let unpassed = 0;
   let counter = 0;
-  for (let i = 0; i <= scores.length; i++) {
-    if (scores[i] > 60) {
-      counter += 1;
-    }
-  }
 
-  counter = Math.round(((counter / scores.length) * 10000) / 100);
-  return `及格率為${counter}%`;
-}
-
-//及格率低於50%，將補正後的分數寫於 HTML 段落中。
-
-function correction(list) {
   for (let i = 0; i < list.length; i++) {
-    if (list[i].scores < 60) {
-      let newScores = Number(list[i].scores);
-      for (let j = 1; j + newScores <= 60; j = 1) {
-        newScores += j;
-      }
-      list[i].scores = newScores;
+    if (list[i].scores > 59) {
+      passed += 1;
+    } else {
+      unpassed += 1;
     }
   }
-  //   將補正後的分數寫於 HTML 段落中
+  let unpassedPercentage = unpassed / (passed + unpassed);
+  // 如果不及格率大於5成，則進行加分
 
+  if (unpassedPercentage > 0.5) {
+    addScores(list);
+  }
   let newStudentID = document.querySelectorAll(".newStudentID");
   let newScore = document.querySelectorAll(".newScore");
   for (let i = 0; i < list.length; i++) {
     newStudentID[i].innerHTML = `學號 : ${list[i].IdNos}`;
     newScore[i].innerHTML = `分數 : ${list[i].scores}`;
   }
+  return `原始不及格率為${unpassedPercentage * 100}%`;
+}
+
+// 加分功能（每人+1分，但不超過100分）
+function addScores(list) {
+  for (let i = 0; i < list.length; i++) {
+    if (list[i].scores < 100) {
+      list[i].scores += 1;
+    }
+  }
+  //因為加分改變原始的陣列分數，所以重新呼叫計算不及格百分比功能以驗證新陣列的不及格率
+  findPercentage(list);
 }
