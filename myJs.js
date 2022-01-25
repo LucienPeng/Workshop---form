@@ -3,26 +3,51 @@
 let warning = document.querySelector("#warning");
 
 const submitBtn = document.querySelector(".submit-btn-form");
+const createBtn = document.querySelector(".submit-btn-create");
+const createInput = document.querySelector(".col.form");
 const studentsInfo = document.querySelectorAll(".students-info-form");
 const resultSection1 = document.querySelector(".result-section1");
 const resultSection2 = document.querySelector(".result-section2");
 const resultSection3 = document.querySelector(".result-section3");
-
 let theHighestResult = document.querySelector("#Highest-Result");
 let theLowestResult = document.querySelector("#Lowest-Result");
 let theAverageResult = document.querySelector("#Average-Result");
 let unpassResult = document.querySelector("#unpass-Result");
-
 let newAverageResult = document.querySelector("#New-Average-Result");
 
 const studentsIDArray = [];
 const studentsScoreArray = [];
+
+createBtn.addEventListener("click", (e) => {
+  e.preventDefault;
+  let createDIV = document.createElement("div");
+  createDIV.classList.add("students-info-form");
+
+  let createH5_ID = document.createElement("h5");
+  createH5_ID.innerText = "學號：";
+
+  let createINPUT_ID = document.createElement("input");
+  createINPUT_ID.setAttribute("placeholder", "請輸入學號");
+
+  let createH5_Score = document.createElement("h5");
+  createH5_Score.innerText = "分數：";
+
+  let createINPUT_Score = document.createElement("input");
+  createINPUT_Score.setAttribute("placeholder", "請輸入分數");
+
+  createDIV.appendChild(createH5_ID);
+  createDIV.appendChild(createINPUT_ID);
+  createDIV.appendChild(createH5_Score);
+  createDIV.appendChild(createINPUT_Score);
+  createInput.appendChild(createDIV);
+});
 
 submitBtn.addEventListener("click", (e) => {
   e.preventDefault;
 
   //防止輸入空值
   studentsInfo.forEach((item) => {
+    console.log(item);
     let studentsID = item.children[1].value;
     let studentsScore = item.children[3].value;
 

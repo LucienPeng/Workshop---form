@@ -1,239 +1,97 @@
-/* http://meyerweb.com/eric/tools/css/reset/ 
-   v2.0 | 20110126
-   License: none (public domain)
-*/
-
-html,
-body,
-div,
-span,
-applet,
-object,
-iframe,
-h1,
-h2,
-h3,
-h4,
-h5,
-h6,
-p,
-blockquote,
-pre,
-a,
-abbr,
-acronym,
-address,
-big,
-cite,
-code,
-del,
-dfn,
-em,
-img,
-ins,
-kbd,
-q,
-s,
-samp,
-small,
-strike,
-strong,
-sub,
-sup,
-tt,
-var,
-b,
-u,
-i,
-center,
-dl,
-dt,
-dd,
-ol,
-ul,
-li,
-fieldset,
-form,
-label,
-legend,
-table,
-caption,
-tbody,
-tfoot,
-thead,
-tr,
-th,
-td,
-article,
-aside,
-canvas,
-details,
-embed,
-figure,
-figcaption,
-footer,
-header,
-hgroup,
-menu,
-nav,
-output,
-ruby,
-section,
-summary,
-time,
-mark,
-audio,
-video {
-  margin: 0;
-  padding: 0;
-  border: 0;
-  font-size: 100%;
-  font: inherit;
-  vertical-align: baseline;
-}
-/* HTML5 display-role reset for older browsers */
-article,
-aside,
-details,
-figcaption,
-figure,
-footer,
-header,
-hgroup,
-menu,
-nav,
-section {
-  display: block;
-}
 body {
-  line-height: 1;
-}
-ol,
-ul {
-  list-style: none;
-}
-blockquote,
-q {
-  quotes: none;
-}
-blockquote:before,
-blockquote:after,
-q:before,
-q:after {
-  content: "";
-  content: none;
-}
-table {
-  border-collapse: collapse;
-  border-spacing: 0;
-}
-
-body {
-  background-image: url("https://images.pexels.com/photos/917494/pexels-photo-917494.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260");
-  background-repeat: no-repeat;
-  background-size: cover;
+  background-color: #2f3e46;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .container-fluid {
+  width: 95vw;
+  height: 100%;
+  background-color: #354f52;
+  border: #fff solid 2px;
+  border-radius: 15px;
   display: flex;
-  flex-direction: column;
-  align-items: center;
   justify-content: center;
-  height: 100vh;
-  width: 100vw;
+  align-items: center;
+  flex-direction: column;
 }
 
-.row.form {
+.row {
   display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-  width: inherit;
+  justify-content: space-between;
+  align-items: baseline;
+  margin: 10px;
+  width: 100%;
 }
 
 .col.form {
-  width: inherit;
-  background-color: #ffffffa1;
-  border-radius: 10px;
   display: flex;
   justify-content: center;
   align-items: center;
-  flex-direction: column;
-  padding-top: 20px;
-  padding-bottom: 20px;
-}
-
-.col.form #warning {
-  color: red;
-}
-
-.students-form {
-  display: flex;
-  justify-content: space-evenly;
-  align-items: center;
   flex-wrap: wrap;
+  background-color: #84a98ca4;
+  border: 1px solid #fff;
+  border-radius: 15px;
+  height: 100%;
+  margin: 10px 0px 10px 0px;
 }
 
 .students-info-form {
-  padding: 10px;
-  margin: 10px;
+  padding: 15px;
+  margin: 15px;
   border-radius: 10px;
-  background-color: #b1c6d471;
+  background-color: #cad2c5a1;
 }
 
-.students-info-form p {
-  margin-top: 5px;
-  margin-bottom: 5px;
-}
-
-.students-info-form input {
-  margin-top: 5px;
-  margin-bottom: 5px;
-}
-
-.submit-btn-form button {
-  font-weight: bold;
-  background-color: #fff;
-}
-
-.row.result {
+#buttons {
   display: flex;
   justify-content: center;
-  align-items: flex-start;
-  width: 100vw;
+}
+
+.submit-btn-form {
+  font-weight: bold;
+  background-color: #fff;
+  border: none;
+  border-radius: 15px;
+  padding: 5px 15px 5px 15px;
+  text-align: center;
+  margin: 5px;
+}
+
+.submit-btn-create:hover {
+  background-color: #277da1;
+}
+
+.submit-btn-create {
+  font-weight: bold;
+  background-color: #fff;
+  border: none;
+  border-radius: 15px;
+  padding: 5px 15px 5px 15px;
+  text-align: center;
+  margin: 5px;
+}
+
+.submit-btn-form:hover {
+  background-color: #f9c74f;
+}
+
+.row.result .col {
+  background-color: #ffffffa1;
+  border-radius: 10px;
   height: 100%;
+  margin-top: 10px;
+  /* display: none; */
 }
 
-.result-section1 {
-  display: none;
-  padding: 20px;
-  background-color: #ffffffa1;
-  border-radius: 10px;
-  margin: 5px;
-}
-
-.result-section1 li:nth-of-type(odd) {
-  margin-bottom: 5px;
-}
-
-.result-section3 {
-  display: none;
-  padding: 20px;
-  background-color: #ffffffa1;
-  border-radius: 10px;
-  margin: 5px;
+ul {
   list-style-type: none;
-  line-height: 1.5em;
+  text-align: center;
+  padding: 0px;
+  padding: 10px;
 }
 
-.result-section2 {
-  display: none;
-  padding: 20px;
-  background-color: #ffffffa1;
-  border-radius: 10px;
-  margin: 5px;
-}
-
-.result-section2 li:nth-of-type(odd) {
-  margin-bottom: 5px;
+ul li:nth-of-type(odd) {
+  margin-bottom: 10px;
 }
