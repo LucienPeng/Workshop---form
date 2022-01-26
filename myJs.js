@@ -5,7 +5,6 @@ let warning = document.querySelector("#warning");
 const submitBtn = document.querySelector(".submit-btn-form");
 const createBtn = document.querySelector(".submit-btn-create");
 const createInput = document.querySelector(".col.form");
-const studentsInfo = document.querySelectorAll(".students-info-form");
 const resultSection1 = document.querySelector(".result-section1");
 const resultSection2 = document.querySelector(".result-section2");
 const resultSection3 = document.querySelector(".result-section3");
@@ -44,6 +43,8 @@ createBtn.addEventListener("click", (e) => {
 
 submitBtn.addEventListener("click", (e) => {
   e.preventDefault;
+
+  let studentsInfo = document.querySelectorAll(".students-info-form");
 
   //防止輸入空值
   studentsInfo.forEach((item) => {
@@ -88,11 +89,11 @@ submitBtn.addEventListener("click", (e) => {
       //計算平均分數 //將平均值的結果，寫於 HTML 段落中
       let average = 0;
       studentsScoreArray.forEach((item, index) => {
-        average += Math.round(Number(item));
+        average += Number(item);
       });
 
       let result = document.createElement("li");
-      average = average / studentsScoreArray.length;
+      average = Math.round(average / studentsScoreArray.length);
       theAverageResult.innerHTML = `總平均分數為： ${average} 分。`;
 
       //計算最高分並寫於 HTML 段落中
@@ -177,7 +178,7 @@ function findPercentage(list) {
     newStudentID[i].innerHTML = `學號 : ${list[i].IdNos}`;
     newScore[i].innerHTML = `分數 : ${list[i].scores}`;
   }
-  return `原始不及格率為${unpassedPercentage * 100}%`;
+  return `原始不及格率為${Math.round(unpassedPercentage * 100)}%`;
 }
 
 // 加分功能（每人+1分，但不超過100分）
