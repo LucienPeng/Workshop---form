@@ -3,7 +3,13 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-direction: column;
   min-height: 100vh;
+}
+
+header {
+  color: #fff;
+  margin-bottom: 3rem;
 }
 
 .container-fluid {
@@ -21,7 +27,6 @@ body {
 .row {
   display: flex;
   justify-content: space-between;
-  align-items: baseline;
   margin: 10px;
   width: 100%;
 }
@@ -35,7 +40,7 @@ body {
   border: 1px solid #fff;
   border-radius: 15px;
   height: 100%;
-  margin: 10px 0px 10px 0px;
+  margin: 10px 0px 0px 0px;
 }
 
 .students-info-form {
@@ -45,7 +50,13 @@ body {
   background-color: #cad2c5a1;
 }
 
-#buttons {
+.row.buttons {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 2em;
+}
+
+.buttons {
   display: flex;
   justify-content: center;
 }
@@ -60,8 +71,26 @@ body {
   margin: 5px;
 }
 
+.submit-btn-form:hover {
+  background-color: #f9c74f;
+}
+
 .submit-btn-create:hover {
-  background-color: #277da1;
+  background-color: #f9c74f;
+}
+
+.submit-btn-recount {
+  font-weight: bold;
+  background-color: #fff;
+  border: none;
+  border-radius: 15px;
+  padding: 5px 15px 5px 15px;
+  text-align: center;
+  margin: 5px;
+}
+
+.submit-btn-recount:hover {
+  background-color: #ffafcc;
 }
 
 .submit-btn-create {
@@ -74,25 +103,37 @@ body {
   margin: 5px;
 }
 
-.submit-btn-form:hover {
-  background-color: #f9c74f;
+.submit-btn-delete {
+  font-weight: bold;
+  background-color: #fff;
+  border: none;
+  border-radius: 15px;
+  padding: 5px 15px 5px 15px;
+  text-align: center;
+  margin: 5px;
 }
 
-.row.result .col {
+.submit-btn-delete:hover {
+  background-color: #ffafcc;
+}
+
+.row.result .col ul {
   background-color: #ffffffa1;
   border-radius: 10px;
   height: 100%;
-  margin-top: 10px;
-  /* display: none; */
 }
 
 ul {
   list-style-type: none;
   text-align: center;
   padding: 0px;
-  padding: 10px;
+  padding: 5px;
 }
 
 ul li:nth-of-type(odd) {
   margin-bottom: 10px;
+}
+
+.row.result {
+  display: none;
 }

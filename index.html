@@ -9,6 +9,9 @@
     <title>Workshop 1</title>
 </head>
 <body>
+    <header>
+        <h1>分數計算機</h1>
+    </header>
     <div class="container-fluid">
         <div class="row">
             <div class="col form" >
@@ -21,50 +24,41 @@
             </div>
         </div>
         <p id="warning"></p>
-        <div id="buttons">
-            <button class="submit-btn-create">新增欄位＋</button>
-            <button class="submit-btn-form">計算</button>
-            <button class="submit-btn-form">重計</button>
-            <button class="submit-btn-create">減少欄位—</button>
+        <div class="row buttons">
+            <div class="col buttons">
+                <button class="submit-btn-form">計算</button>
+                <button class="submit-btn-recount">重計</button>
+            </div>
+            <div class="col buttons">
+                <button class="submit-btn-create">新增欄位＋</button>
+                <button class="submit-btn-delete">減少欄位—</button>
+            </div>
         </div>
+        
         <div class="row result">
             
-            <div class="col-md-3 col-12 col result">
+            <div class="col-md-3 col-12 col">
                 <ul class="result-section1">
                     <li id="title"><strong>原始分數</strong></li>
                     <li class="student" ></li>
                     <li class="score" ></li>
-                    <li class="student" ></li>
-                    <li class="score" ></li> 
-                    <li class="student" ></li>
-                    <li class="score" ></li> 
-                    <li class="student" ></li>
-                    <li class="score" ></li> 
-                    <li class="student" ></li>
-                    <li class="score" ></li>
+
                 </ul>
             </div>
 
-            <div class="col-md-3 col-12 col result3">
+            <div class="col-md-3 col-12 col">
                 <ul class="result-section2">
                     <li id="title"><strong>修正後分數</strong></li>
-                    <li class="newStudentID"></li>
-                    <li class="newScore"></li>
-                    <li class="newStudentID"></li>
-                    <li class="newScore"></li>
-                    <li class="newStudentID"></li>
-                    <li class="newScore"></li>
-                    <li class="newStudentID"></li>
-                    <li class="newScore"></li>
                     <li class="newStudentID"></li>
                     <li class="newScore"></li>
                 </ul>
             </div>
             
-            <div class="col-md-4 col-12 col result2">
+            <div class="col-md-3 col-12 col">
                 <ul class="result-section3">
                     <li id="title"><strong>考試結果分析</strong></li>
                     <li id="Average-Result"></li>
+                    <li></li>
                     <li id="Highest-Result"></li>
                     <li id="Lowest-Result"></li>
                     <li id="unpass-Result"></li>

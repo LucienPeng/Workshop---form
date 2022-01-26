@@ -7,7 +7,7 @@ const createBtn = document.querySelector(".submit-btn-create");
 const createInput = document.querySelector(".col.form");
 const resultSection1 = document.querySelector(".result-section1");
 const resultSection2 = document.querySelector(".result-section2");
-const resultSection3 = document.querySelector(".result-section3");
+const resultSection = document.querySelector(".row.result");
 let theHighestResult = document.querySelector("#Highest-Result");
 let theLowestResult = document.querySelector("#Lowest-Result");
 let theAverageResult = document.querySelector("#Average-Result");
@@ -17,6 +17,7 @@ let newAverageResult = document.querySelector("#New-Average-Result");
 const studentsIDArray = [];
 const studentsScoreArray = [];
 
+//新增輸入欄位
 createBtn.addEventListener("click", (e) => {
   e.preventDefault;
   let createDIV = document.createElement("div");
@@ -39,6 +40,26 @@ createBtn.addEventListener("click", (e) => {
   createDIV.appendChild(createH5_Score);
   createDIV.appendChild(createINPUT_Score);
   createInput.appendChild(createDIV);
+
+  //新增學生原始分數顯示欄位
+
+  let student = document.createElement("li");
+  student.classList.add("student");
+  resultSection1.appendChild(student);
+
+  let score = document.createElement("li");
+  score.classList.add("score");
+  resultSection1.appendChild(score);
+
+  //新增學生加分後分數顯示欄位
+
+  let newStudentID = document.createElement("li");
+  newStudentID.classList.add("newStudentID");
+  resultSection2.appendChild(newStudentID);
+
+  let newScore = document.createElement("li");
+  newScore.classList.add("newScore");
+  resultSection2.appendChild(newScore);
 });
 
 submitBtn.addEventListener("click", (e) => {
@@ -48,7 +69,6 @@ submitBtn.addEventListener("click", (e) => {
 
   //防止輸入空值
   studentsInfo.forEach((item) => {
-    console.log(item);
     let studentsID = item.children[1].value;
     let studentsScore = item.children[3].value;
 
@@ -78,12 +98,14 @@ submitBtn.addEventListener("click", (e) => {
       }
 
       //將學生清單（物件）寫於 HTML 段落中
-      let student = document.querySelectorAll(".student");
-      let score = document.querySelectorAll(".score");
+
+      let students = document.querySelectorAll(".student");
+
+      let scores = document.querySelectorAll(".score");
 
       studentsList.forEach((item, index) => {
-        student[index].innerText = `學號 : ${studentsList[index].IdNos}`;
-        score[index].innerText = `分數 : ${studentsList[index].scores}`;
+        students[index].innerText = `學號 : ${studentsList[index].IdNos}`;
+        scores[index].innerText = `分數 : ${studentsList[index].scores}`;
       });
 
       //計算平均分數 //將平均值的結果，寫於 HTML 段落中
@@ -109,9 +131,7 @@ submitBtn.addEventListener("click", (e) => {
       unpassResult.innerHTML = unpass;
 
       //顯現結果段落
-      resultSection1.style.display = "block";
-      resultSection2.style.display = "block";
-      resultSection3.style.display = "block";
+      resultSection.style.display = "flex";
     }
   });
 
