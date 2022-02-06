@@ -1,8 +1,9 @@
 /*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*/
 
-let warning = document.querySelector("#warning");
-
+const warning = document.querySelector("#warning");
+const recountBtn = document.querySelector(".submit-btn-recount");
 const submitBtn = document.querySelector(".submit-btn-form");
+const deleteBtn = document.querySelector(".submit-btn-delete");
 const createBtn = document.querySelector(".submit-btn-create");
 const createInput = document.querySelector(".col.form");
 const resultSection1 = document.querySelector(".result-section1");
@@ -16,6 +17,21 @@ let newAverageResult = document.querySelector("#New-Average-Result");
 
 const studentsIDArray = [];
 const studentsScoreArray = [];
+
+//減少輸入欄位
+deleteBtn.addEventListener("click", (e) => {
+  let deleteDIV = document.querySelector(".students-info-form");
+  let deleteH5_ID = document.querySelector("h5");
+  let deleteINPUT_ID = document.querySelector("input");
+  deleteDIV.removeChild(deleteH5_ID);
+  deleteDIV.removeChild(deleteINPUT_ID);
+  createInput.removeChild(deleteDIV);
+});
+
+//重新計算
+recountBtn.addEventListener("click", (e) => {
+  window.location.reload();
+});
 
 //新增輸入欄位
 createBtn.addEventListener("click", (e) => {
